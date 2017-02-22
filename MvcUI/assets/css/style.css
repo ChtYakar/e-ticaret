@@ -1,0 +1,28 @@
+﻿html, body {
+  height: 100%;
+  margin: 0;
+}
+.wrapper {
+  min-height: 100%;
+  margin-bottom: -90px;
+}
+.swrapper {
+  min-height: 100%;
+  margin-bottom: -30px;
+}
+.swrapper #header{ margin-bottom: 30px;}
+#banner { margin-top: -30px !important;}
+#header { height: 130px;background-color: #0069a2;line-height: 100px;}
+.hdr-bttn{ background-color: #e51937;line-height: 50px;margin-top: 36px;border-radius: 10px;padding:0 10px;}
+.hdr-bttn a { color: white;text-decoration: none;display: block;line-height: 50px;font-size: 16px;}
+
+.flexslider { border:none !important;}
+
+.urun { margin-bottom: 30px;}
+
+#urun-detay { padding: 30px;}
+
+#footer { height: 90px;background-color: #2d2d2d;margin-top: 30px;}
+
+.urun img { position: relative}
+.urun .urun-fiyat { position: absolute; top: 100%; left: 29%;}

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="DmnsServis" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:17034/DmnsServis.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:17034/DmnsServis.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IDmnsServis_Login_InputMessage">
+    <wsdl:part name="parameters" element="tns:Login" />
+  </wsdl:message>
+  <wsdl:message name="IDmnsServis_Login_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDmnsServis_Urunler_InputMessage">
+    <wsdl:part name="parameters" element="tns:Urunler" />
+  </wsdl:message>
+  <wsdl:message name="IDmnsServis_Urunler_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UrunlerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDmnsServis_UrunGetir_InputMessage">
+    <wsdl:part name="parameters" element="tns:UrunGetir" />
+  </wsdl:message>
+  <wsdl:message name="IDmnsServis_UrunGetir_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UrunGetirResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDmnsServis_SiparisOlustur_InputMessage">
+    <wsdl:part name="parameters" element="tns:SiparisOlustur" />
+  </wsdl:message>
+  <wsdl:message name="IDmnsServis_SiparisOlustur_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SiparisOlusturResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDmnsServis_Kupon_InputMessage">
+    <wsdl:part name="parameters" element="tns:Kupon" />
+  </wsdl:message>
+  <wsdl:message name="IDmnsServis_Kupon_OutputMessage">
+    <wsdl:part name="parameters" element="tns:KuponResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IDmnsServis">
+    <wsdl:operation name="Login">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDmnsServis/Login" message="tns:IDmnsServis_Login_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDmnsServis/LoginResponse" message="tns:IDmnsServis_Login_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Urunler">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDmnsServis/Urunler" message="tns:IDmnsServis_Urunler_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDmnsServis/UrunlerResponse" message="tns:IDmnsServis_Urunler_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UrunGetir">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDmnsServis/UrunGetir" message="tns:IDmnsServis_UrunGetir_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDmnsServis/UrunGetirResponse" message="tns:IDmnsServis_UrunGetir_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SiparisOlustur">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDmnsServis/SiparisOlustur" message="tns:IDmnsServis_SiparisOlustur_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDmnsServis/SiparisOlusturResponse" message="tns:IDmnsServis_SiparisOlustur_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Kupon">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDmnsServis/Kupon" message="tns:IDmnsServis_Kupon_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDmnsServis/KuponResponse" message="tns:IDmnsServis_Kupon_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IDmnsServis" type="tns:IDmnsServis">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Login">
+      <soap:operation soapAction="http://tempuri.org/IDmnsServis/Login" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Urunler">
+      <soap:operation soapAction="http://tempuri.org/IDmnsServis/Urunler" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UrunGetir">
+      <soap:operation soapAction="http://tempuri.org/IDmnsServis/UrunGetir" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SiparisOlustur">
+      <soap:operation soapAction="http://tempuri.org/IDmnsServis/SiparisOlustur" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Kupon">
+      <soap:operation soapAction="http://tempuri.org/IDmnsServis/Kupon" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="DmnsServis">
+    <wsdl:port name="BasicHttpBinding_IDmnsServis" binding="tns:BasicHttpBinding_IDmnsServis">
+      <soap:address location="http://localhost:17034/DmnsServis.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

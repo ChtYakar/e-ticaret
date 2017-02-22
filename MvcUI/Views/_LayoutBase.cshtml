@@ -1,0 +1,72 @@
+﻿@using WCFServisler
+@{
+    var kisi = new Kisiler();
+    if(Session["CurrentUser"] != null)
+    {
+       kisi = (Kisiler) Session["CurrentUser"];
+    }
+}
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link href="~/assets/css/reset.css" rel="stylesheet" />
+    <link href="~/assets/css/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="~/assets/css/fontello.css" rel="stylesheet" />
+    <link href="~/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/assets/js/jquery-3.1.1.min.js"></script>
+    <script src="~/assets/js/bootstrap.min.js"></script>
+    <script src="~/assets/js/npm.js"></script>
+    <script src="~/assets/js/jquery.flexslider.js"></script>
+    <script src="~/assets/js/script.js"></script>
+    <link href="~/assets/css/flexslider.css" rel="stylesheet" />
+    <link href="~/assets/mcss/style.css" rel="stylesheet" />
+    <link href="~/assets/mcss/style-responsive.css" rel="stylesheet" />
+    <link href="~/assets/mcss/style-metronic.css" rel="stylesheet" />
+    <link href="~/assets/mcss/custom.css" rel="stylesheet" />
+    <link href="~/assets/css/style.css" rel="stylesheet" />
+    <title>Domino's Pizza Sample</title>
+</head>
+<body>
+    <div class="swrapper">
+        <div id="header">
+            <div class="container ">
+                <div class="col-xs-12 col-sm-3">
+                    <div class="logo">
+                        <a href="/"><img src="~/assets/image/logo.png" /></a>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-offset-5 col-sm-2 clearfix">
+                    <div class="hdr-bttn giris-yap">
+                        @if (kisi.Ad == null)
+                        {
+                            <a href="@Url.Action("Login","Home")">
+                                <span class="icon-user">Giriş Yap</span>
+                            </a>
+                        }
+                        else
+                        {
+                            <a href="#">
+                                <span class="icon-user">Hoşgeldin @kisi.Ad</span>
+                            </a>
+                        }
+                      
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-2 clearfix">
+                    <div class="hdr-bttn sepet">
+                        <a href="@Url.Action("Sepet","Home")">
+                            <span class="icon-basket">Sepetim</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+       @RenderBody()
+    </div>
+    <div id="footer">
+
+    </div>
+</body>
+</html>
+

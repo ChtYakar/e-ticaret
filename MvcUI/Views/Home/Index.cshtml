@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/_LayoutBase.cshtml";
+}
+
+
+
+<div id="banner">
+    <div class="flexslider">
+        <ul class="slides">
+            <li><img src="~/assets/image/banner1.png" alt="" /></li>
+            <li><img src="~/assets/image/banner2.png" alt="" /></li>
+        </ul>
+    </div>
+</div>
+<div id="content">
+    <div class="container">
+      @Html.Action("Urunler","Home")
+    </div>
+</div>

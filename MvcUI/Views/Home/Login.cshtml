@@ -1,0 +1,63 @@
+﻿@model WCFServisler.Kisiler
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/_LayoutBase.cshtml";
+}
+<style type="text/css">.placehol { }</style>
+<div class="container">
+    <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+        @using (Html.BeginForm())
+        {
+            <div class="form-group">
+                <div class="input-icon">
+                    <i class="fa fa-user"></i>
+                    @Html.TextBoxFor(u => u.Eposta, new { @class = "form-control placeholder-no-fix" })
+                   @* <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="E-Posta" name="username"/>*@
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-icon">
+                    <i class="fa fa-lock"></i>
+                    @Html.TextBoxFor(u => u.Sifre, new { @class = "form-control placeholder-no-fix" })
+
+
+                 @*   <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="Şifre" name="password"/>*@
+                </div>
+            </div>
+            <div class="form-actions">
+                <button id="btn-login" type="submit" class="btn green col-xs-12">
+                    Giriş
+                </button>
+            </div>
+        }
+    </div>
+</div>
+
+@*<script>
+
+    $('#btn-login').click(function (e) {
+        debugger;
+        e.preventDefault(); // <------------------ stop default behaviour of button
+        var element = this;
+        var data = 
+        $.ajax({
+            url: "/Home/Login",
+            type: "POST",
+            data: JSON.stringify({ 'Options': someData }),
+            dataType: "json",
+            traditional: true,
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+                if (data.status == "Success") {
+                    alert("Done");
+                    $(element).closest("form").submit(); //<------------ submit form
+                } else {
+                    alert("Error occurs on the Database level!");
+                }
+            },
+            error: function () {
+                alert("An error has occured!!!");
+            }
+        });
+    });
+</script>*@

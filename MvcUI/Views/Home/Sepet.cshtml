@@ -1,0 +1,142 @@
+﻿@using MvcUI.Controllers
+@using WCFServisler
+
+@{
+    Layout = "~/Views/_LayoutBase.cshtml";
+    List<Urunler> urunList;
+    if (Session["SepetUrunleri"] != null)
+    {
+        urunList = new List<Urunler>((List<Urunler>)Session["SepetUrunleri"]);
+    }
+    else
+    {
+        urunList = new List<Urunler>();
+    }
+}
+<div class="sepet-detay">
+    <div class="main">
+        <div class="container">
+            <!-- BEGIN SIDEBAR & CONTENT -->
+            <div class="row margin-bottom-40">
+                <!-- BEGIN CONTENT -->
+                <div class="col-md-12 col-sm-12">
+                    <h1>Sepetim</h1>
+                    <div class="shopping-cart-page">
+                        <div class="shopping-cart-data clearfix">
+                            <div class="table-wrapper-responsive">
+                                <table summary="Shopping cart">
+                                    <tr>
+                                        <th class="shopping-cart-image">Foto</th>
+                                        <th class="shopping-cart-quantity">Adı</th>
+                                        <th class="shopping-cart-quantity">Adet</th>
+                                        <th class="shopping-cart-price">Birim Fiyat</th>
+                                        <th class="shopping-cart-total" colspan="2">Toplam</th>
+                                    </tr>
+                                    @foreach (var item in urunList)
+                                    {
+                                        <tr>
+
+                                            <td class="shopping-cart-image">
+                                                <a href="#"><img src="@item.Photo" alt="@item.Adi"></a>
+                                            </td>
+                                            <td class="shopping-cart-description">
+                                                <span>@item.Adi</span>
+                                            </td>
+                                            <td class="shopping-cart-quantity">
+                                                <div class="product-quantity">
+                                                    <input id="product-quantity-@item.UrunId" name="@item.UrunId" onchange="hesapla(@item.UrunId)" maxlength="1" type="text" value="1" class="form-control input-sm">
+                                                </div>
+                                            </td>
+                                            <td class="shopping-cart-price">
+                                                <strong><span class="icon-try"></span><span id="uyt-@item.UrunId">@item.Fiyat</span></strong>
+                                            </td>
+                                            <td class="shopping-cart-total">
+                                                <strong>
+                                                    <span class="icon-try"></span><span id="urunToplamFiyat-@item.UrunId">
+                                                        @item.Fiyat
+                                                    </span>
+                                                </strong>
+                                            </td>
+                                            <td class="del-goods-col">
+                                                <a class="delgoods" href="@Url.Action("Sepet","Home", new { @item.UrunId,delete= true})"><i class="icon-cancel-circled2"></i></a>
+                                            </td>
+                                        </tr>
+                                    }
+
+
+                                </table>
+                            </div>
+
+                            <div class="shopping-total">
+                                <ul>
+                                    <li>
+                                        <em>Toplam</em>
+                                        @{
+                                           bool kupon = ((HomeController)this.ViewContext.Controller).Kupon();
+                                        }
+                                        @if (kupon)
+                                        {
+                                            <strong class="price"><span class="icon-try">(%5 indirim)</span><span id="kuponlutotalPrice"></span></strong>
+                                        }
+                                        else
+                                        {
+                                            <strong class="price"><span class="icon-try"></span><span id="totalPrice"></span></strong>
+                                        }
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <a href="/" class="btn btn-default">Alışverişe Devam <i class="fa fa-shopping-cart"></i></a>
+                        <a href="#" id="siparisOlustur" class="btn btn-primary">Siparişi Tamamla <i class="fa fa-check"></i></a>
+                    </div>
+                </div>
+                <!-- END CONTENT -->
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function hesapla(id) {
+        var sayi = $("#product-quantity-" + id).val();
+        var adet = parseInt(sayi);
+        var fiyat = parseFloat($('#uyt-'+id).html().replace(',', '.'));
+        $('#urunToplamFiyat-'+id).html((fiyat * adet).toFixed(2));
+        var sum = 0;
+        $('[id^=urunToplamFiyat]').each(function () {
+            var urunFiyat = $(this).text();
+            sum += parseFloat(urunFiyat.replace(',', '.'));
+        });
+        $('#totalPrice').html(sum.toFixed(2));
+        $('#kuponlutotalPrice').html((sum*0.95).toFixed(2));
+    }
+
+    $(document).ready(function () {
+        $("#siparisOlustur").click(function () {
+            var dizi = [];
+            $('[id^=product-quantity-]').each(function() {
+                var urunId = $(this).attr('name');
+                dizi.push({ UrunId: urunId , Adet :$(this).val() });
+            });
+            $.ajax({
+                url : '/Home/SiparisOlustur/?data='+JSON.stringify(dizi),
+                type:'POST',
+                dataType:'json',
+                contentType: "application/json",
+                success:function(data) {
+                    if (!data.sonuc) {
+                        window.location.href = "/Home/Login";
+                        return false;
+                    } else {
+                        alert(data.mesaj);
+                        
+                    }
+                },
+                error: function (hata, ajaxOptions, thrownError) {
+                    alert(hata.status);
+                    alert(thrownError);
+                    alert(hata.responseText);
+                }
+            });
+        });
+    });
+</script>

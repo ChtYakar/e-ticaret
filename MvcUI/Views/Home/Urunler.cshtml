@@ -1,0 +1,15 @@
+﻿@using WCFServisler
+@model List<WCFServisler.Urunler>
+@{
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+    <div class="col-xs-12 col-sm-4 urun">
+        <a href="@Url.Action("Sepet","Home", new { urunId = @item.UrunId})">
+            <img src="@item.Photo" alt="sepete ekle" title="sepete ekle" />
+            <span class="icon-try urun-fiyat">@item.Fiyat</span>
+        </a>
+    </div>
+}
