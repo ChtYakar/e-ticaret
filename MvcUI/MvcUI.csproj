@@ -124,6 +124,7 @@
     <Content Include="assets\fonts\fontello.eot" />
     <Content Include="assets\fonts\fontello.ttf" />
     <Content Include="assets\fonts\fontello.woff" />
+    <None Include="Properties\PublishProfiles\cihat.pubxml" />
     <None Include="Service References\ConDmnsServis\DmnsServis.disco" />
     <None Include="Service References\ConDmnsServis\configuration91.svcinfo" />
     <None Include="Service References\ConDmnsServis\configuration.svcinfo" />
